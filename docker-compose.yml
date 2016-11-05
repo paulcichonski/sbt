@@ -1,2 +1,10 @@
-noop:
-   image: alpine
+version: '2'
+
+services:
+  ## use elsy blackbox-test phase to verify sbt can compile a sbt project
+  blackbox-test:
+    image: sbt
+    volumes:
+      - ./:/opt/project
+    working_dir: /opt/project/sample-project
+    command: sbt compile

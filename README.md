@@ -9,10 +9,11 @@ Image contains:
 
 ## How to Build
 
-This repo uses [elsy](https://github.com/cisco/elsy). 
+This repo uses [elsy](https://github.com/cisco/elsy).
 
 To build:
 
 ```
 lc package
+lc blackbox-test
 ```
