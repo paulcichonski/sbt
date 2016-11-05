@@ -1,0 +1,3 @@
+project_name: sbt
+docker_image_name: sbt
+docker_registry: paulcichonski
