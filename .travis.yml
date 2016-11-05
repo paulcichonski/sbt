@@ -1,0 +1,31 @@
+sudo: required
+language: bash
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.8.1
+  DOCKER_VERSION: 1.11.2
+  LC_VERSION: 1.3.0
+
+before_install:
+    # docker
+  - sudo apt-get update && sudo apt-get install apt-transport-https ca-certificates
+  - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  - sudo bash -c "echo deb https://apt.dockerproject.org/repo ubuntu-precise main > /etc/apt/sources.list.d/docker.list"
+  - sudo apt-get update
+  - sudo apt-get purge lxc-docker
+  - sudo apt-get install docker-engine=${DOCKER_VERSION}-0~precise
+  - sudo docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  # docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  # elsy
+  - curl -L https://github.com/cisco/elsy/releases/download/v${LC_VERSION}/lc-linux-amd64-v${LC_VERSION} > lc
+  - chmod +x lc
+  - sudo mv lc /usr/local/bin
+
+script:
+  - export GIT_BRANCH=origin/$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else $TRAVIS_PULL_REQUEST_BRANCH; fi)
+  - export GIT_TAG_NAME=${TRAVIS_TAG}
+  - echo "GIT_BRANCH=$GIT_BRANCH GIT_TAG_NAME=$GIT_TAG_NAME"
+  - sudo lc ci

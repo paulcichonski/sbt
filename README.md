@@ -1,5 +1,7 @@
 # sbt
 
+[![Build Status](https://travis-ci.org/paulcichonski/sbt.svg?branch=master)](https://travis-ci.org/paulcichonski/sbt)
+
 A basic sbt docker image.
 
 Image contains:
