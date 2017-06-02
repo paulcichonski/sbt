@@ -6,8 +6,8 @@ A basic sbt docker image.
 
 Image contains:
 
-* scala 2.11.8
-* sbt 0.13.13
+* scala 2.11.8 and 2.12.2
+* sbt 0.13.15
 
 ## How to Build
 
