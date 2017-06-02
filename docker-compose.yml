@@ -7,4 +7,4 @@ services:
     volumes:
       - ./:/opt/project
     working_dir: /opt/project/sample-project
-    command: sbt compile
+    command: sbt +compile

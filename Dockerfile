@@ -1,6 +1,6 @@
 FROM library/java:8-jdk
 
-ENV SBT_VERSION 0.13.13
+ENV SBT_VERSION 0.13.15
 
 ## from: http://www.scala-sbt.org/0.13/docs/Installing-sbt-on-Linux.html
 RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list \
@@ -9,10 +9,10 @@ RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list
     && apt-get install -y sbt=$SBT_VERSION \
     && apt-get clean
 
-## compile sample project to pre-download common dependencies (including scala 2.11.8)
+## compile sample project to pre-download common dependencies (including scala 2.11.8 and 2.12.2)
 COPY sample-project /opt/sample-project
 RUN cd /opt/sample-project \
-    && sbt compile \
+    && sbt +compile \
     && rm -rf /opt/sample-project
 
 ## ivy volumes
