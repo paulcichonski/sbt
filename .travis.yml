@@ -2,9 +2,9 @@ sudo: required
 language: bash
 
 env:
-  DOCKER_COMPOSE_VERSION: 1.8.1
-  DOCKER_VERSION: 1.11.2
-  LC_VERSION: 1.3.0
+  DOCKER_COMPOSE_VERSION: 1.12.0
+  DOCKER_VERSION: 1.13.1
+  LC_VERSION: 2.3.0
 
 before_install:
     # docker
